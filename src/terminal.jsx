@@ -1,25 +1,27 @@
 import React from 'react';
 import css from './terminal.module.css';
 
-const Toolbar = ({ title }) =>
+export const ToolbarTitle = ({ children }) =>
+	<div className={css.title}>{children}</div>;
+
+export const Light = ({ children, className }) =>
+	<div className={[css.light, className].join(' ')}>
+		<div className={css.glyph}>{ children }</div>
+	</div>;
+
+export const Toolbar = ({ title }) =>
 	<div className={css.toolbar}>
 		<div className={css.top}>
 			<div className={css.lights}>
-				<div className={css.light + ' ' + css.red}>
-					<div className={css.glyph}>×</div>
-				</div>				
-				<div className={css.light + ' ' + css.yellow}>
-					<div className={css.glyph}>-</div>
-				</div>
-				<div className={css.light + ' ' + css.green}>
-					<div className={css.glyph}>+</div>
-				</div>
+				<Light className={css.red}>x</Light>
+				<Light className={css.yellow}>-</Light>
+				<Light className={css.green}>+</Light>
 			</div>
-			<div className={css.title}>{title}</div>
+			<ToolbarTitle>{title}</ToolbarTitle>
 		</div>
 	</div>;
 
-const Cursor = () =>
+export const Cursor = () =>
 	<div className={css.cursor} />;
 
 const Terminal = ({ children, title="Untitled" }) =>
